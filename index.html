@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEN Fitness ERP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="hero-panel">
+      <div class="brand-block">
+        <p class="eyebrow">DEN FITNESS ERP</p>
+        <h1>Dynamic gym ERP with live database, roles, fees, attendance, and location check-in.</h1>
+        <p class="hero-copy">
+          Real-time operations system for DEN Fitness, Saki Naka. Built to run on Supabase with role-based access
+          for owner, trainers, and members.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <span>Owner Control</span>
+          <p>Manage plans, monthly fees, dues, attendance corrections, and view business overview.</p>
+        </div>
+        <div class="feature-card">
+          <span>Trainer Flow</span>
+          <p>View members, add attendance, enter fee payments, but no member record updates.</p>
+        </div>
+        <div class="feature-card">
+          <span>Member Access</span>
+          <p>See own attendance, dues, payment history, and mark presence using gym location.</p>
+        </div>
+      </div>
+    </aside>
+
+    <main class="workspace-panel">
+      <section id="setupNotice" class="panel-card notice-card hidden"></section>
+      <section id="authView" class="view active"></section>
+      <section id="dashboardView" class="view"></section>
+    </main>
+  </div>
+
+  <template id="authTemplate">
+    <div class="panel-card auth-card">
+      <div>
+        <p class="section-label">Secure Access</p>
+        <h2>Login to DEN Fitness ERP</h2>
+        <p class="muted">Use your Supabase Auth email and password.</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <label>
+          Email
+          <input id="emailInput" type="email" placeholder="owner@denfitness.com" required />
+        </label>
+
+        <label>
+          Password
+          <input id="passwordInput" type="password" placeholder="Enter password" required />
+        </label>
+
+        <button type="submit" class="primary-btn">Login</button>
+        <p id="authMessage" class="message"></p>
+      </form>
+
+      <div class="info-card compact-card">
+        <p class="section-label">Supabase Setup</p>
+        <h3>Before first login</h3>
+        <ul class="info-list">
+          <li>Run the SQL file from <code>sql/schema.sql</code> in your Supabase SQL editor.</li>
+          <li>Update <code>js/config.js</code> with your project URL and anon key.</li>
+          <li>Create your users in Supabase Authentication.</li>
+          <li>Make the first owner by changing that profile role to <code>owner</code>.</li>
+        </ul>
+      </div>
+    </div>
+  </template>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
